@@ -1,0 +1,13 @@
+/* styles.css */
+[data-testid="stSidebar"] {
+    background-color: #e7a28b;  /* Replace with your desired color */
+}
+
+/* Custom logo container background */
+.logo-container {
+    background-color: #FFEB3B;  /* Logo background color */
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
