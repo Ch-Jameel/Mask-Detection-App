@@ -2,6 +2,7 @@ names:
 - with_mask
 - without_mask
 - mask_weared_incorrect
+
 nc: 3
 test: e:\PROJECTS\Mask-Detection-App\Yolo_data/testing/images
 train: e:\PROJECTS\Mask-Detection-App\Yolo_data/training/images

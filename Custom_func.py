@@ -14,6 +14,7 @@ def initialize_directory_structure(base_dir):
     for directory in dir_structure:
         os.makedirs(os.path.join(base_dir, directory), exist_ok=True)
 
+
 # Function to transform bounding boxes into a normalized format for YOLO
 def normalize_bbox(image_size, bbox_coords):
     img_w, img_h = image_size
@@ -52,6 +53,28 @@ def convert_to_yolo_format(xml_file, label_output, object_classes):
     except Exception as e:
         print(f"Error processing {xml_file}: {e}")
 
+    tree = ET.parse(xml_file)
+    root = tree.getroot()
+    image_size = (int(root.find('size/width').text), int(root.find('size/height').text))
+    
+    with open(label_output, 'w') as file:
+        for obj in root.iter('object'):
+            if obj.find('difficult').text == '1':  # Skip difficult objects
+                continue
+            class_name = obj.find('name').text
+            if class_name in object_classes:
+                class_idx = object_classes.index(class_name)
+                xml_bbox = obj.find('bndbox')
+                bbox = (
+                    float(xml_bbox.find('xmin').text),
+                    float(xml_bbox.find('ymin').text),
+                    float(xml_bbox.find('xmax').text),
+                    float(xml_bbox.find('ymax').text)
+                )
+                yolo_bbox = normalize_bbox(image_size, bbox)
+                file.write(f"{class_idx} {' '.join(map(str, yolo_bbox))}\n")
+
+
 # Copy images and process annotations
 def prepare_image_data(image_files, img_dir, annot_dir, dest_dir, subset, object_classes):
     for image_file in image_files:
@@ -60,10 +83,14 @@ def prepare_image_data(image_files, img_dir, annot_dir, dest_dir, subset, object
         shutil.copy(os.path.join(img_dir, image_file), dest_image_path)
         print(f"Copied {image_file} to {dest_image_path}")
 
+        shutil.copy(os.path.join(img_dir, image_file), os.path.join(dest_dir, f'Yolo_data/{subset}/images', image_file))
+
+
         # Convert and save annotations
         annotation_file = os.path.splitext(image_file)[0] + '.xml'
         label_file = os.path.join(dest_dir, f'Yolo_data/{subset}/labels', os.path.splitext(image_file)[0] + '.txt')
         convert_to_yolo_format(os.path.join(annot_dir, annotation_file), label_file, object_classes)
+
 
 # Split the Yolo_data and process images for training, validation, and testing
 def split_and_prepare_Yolo_data(image_list, img_directory, annot_directory, base_path, object_classes):
