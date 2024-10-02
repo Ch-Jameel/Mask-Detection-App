@@ -1,0 +1,8 @@
+names:
+- Masked
+- Unmasked
+- Improperly_Masked
+nc: 3
+test: e:\PROJECTS\Mask-Detection-App\Yolo_data/testing/images
+train: e:\PROJECTS\Mask-Detection-App\Yolo_data/training/images
+val: e:\PROJECTS\Mask-Detection-App\Yolo_data/validation/images
