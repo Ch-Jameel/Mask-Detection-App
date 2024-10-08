@@ -15,11 +15,20 @@ This project demonstrates real-time face mask detection using the YOLOv8 model. 
 2. **Model Training**: YOLOv8 was used for training with custom augmentations.
 3. **Prediction Results**: Example predictions can be found below:
 
-![Prediction Example 1](predicted_results/example1.png)
-*Prediction: Without Mask*
+## Main APP View
+![Prediction Example 1](Predicted%20Samples/Screenshot%20(267).png)
 
-![Prediction Example 2](predicted_results/example2.png)
-*Prediction: Incorrect Mask*
+## APP View when any sample Image Loaded using uploaded image
+![Prediction Example 2](Predicted%20Samples/Screenshot%20(268).png)
+
+## When Click Predict then Predicted Image
+![Prediction Example 3](Predicted%20Samples/Screenshot%20(269).png)
+## Upload another image and get the prediction
+![Prediction Example 4](Predicted%20Samples/Screenshot%20(270).png)
+
+## Upload another image and get a prediction
+![Prediction Example 5](Predicted%20Samples/Screenshot%20(271).png)
+
 
 ## How to Run the App
 1. Install dependencies:
