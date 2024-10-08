@@ -43,3 +43,7 @@ This project demonstrates real-time face mask detection using the YOLOv8 model. 
 
 ## Conclusion
 This YOLOv8-powered mask detection app ensures high accuracy and speed, making it ideal for real-world deployment in areas like public safety and health monitoring.
+
+## Very Important Note
+
+I use the custom function to handle the dataset formats for YOLO. However, I did not upload the custom.py code file due to my code privacy
