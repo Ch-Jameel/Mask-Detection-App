@@ -1,0 +1,6 @@
+streamlit
+ultralytics
+Pillow
+numpy
+scikit-learn
+pyyaml
